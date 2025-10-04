@@ -130,8 +130,11 @@ void CollisionEnvBullet::checkSelfCollisionHelper(const CollisionRequest& req, C
   for (const collision_detection_bullet::CollisionObjectWrapperPtr& cow : cows)
   {
     manager_->addCollisionObject(cow);
+    for(int i=0;i<state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
+    {
     manager_->setCollisionObjectsTransform(
         cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+    }
   }
 
   // updating link positions with the current robot state
@@ -194,8 +197,12 @@ void CollisionEnvBullet::checkRobotCollisionHelper(const CollisionRequest& req, 
   for (const collision_detection_bullet::CollisionObjectWrapperPtr& cow : attached_cows)
   {
     manager_->addCollisionObject(cow);
+
+    for(int i=0;i<state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
+    {
     manager_->setCollisionObjectsTransform(
         cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+    }
   }
 
   manager_->contactTest(res, req, acm, false);
@@ -219,9 +226,12 @@ void CollisionEnvBullet::checkRobotCollisionHelperCCD(const CollisionRequest& re
   for (const collision_detection_bullet::CollisionObjectWrapperPtr& cow : attached_cows)
   {
     manager_CCD_->addCollisionObject(cow);
+    for(int i=0;i<state1.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
+    {
     manager_CCD_->setCastCollisionObjectsTransform(
         cow->getName(), state1.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0],
         state2.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+    }
   }
 
   for (const std::string& link : active_)
