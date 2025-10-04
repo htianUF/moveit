@@ -133,7 +133,7 @@ void CollisionEnvBullet::checkSelfCollisionHelper(const CollisionRequest& req, C
     for(int i=0;i<state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
     {
     manager_->setCollisionObjectsTransform(
-        cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+        cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[i]);
     }
   }
 
@@ -201,7 +201,7 @@ void CollisionEnvBullet::checkRobotCollisionHelper(const CollisionRequest& req, 
     for(int i=0;i<state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
     {
     manager_->setCollisionObjectsTransform(
-        cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+        cow->getName(), state.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[i]);
     }
   }
 
@@ -229,8 +229,8 @@ void CollisionEnvBullet::checkRobotCollisionHelperCCD(const CollisionRequest& re
     for(int i=0;i<state1.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms().size();i++)
     {
     manager_CCD_->setCastCollisionObjectsTransform(
-        cow->getName(), state1.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0],
-        state2.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[0]);
+        cow->getName(), state1.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[i],
+        state2.getAttachedBody(cow->getName())->getGlobalCollisionBodyTransforms()[i]);
     }
   }
 
